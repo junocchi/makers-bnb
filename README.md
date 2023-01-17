@@ -88,4 +88,4 @@ user.save ? '/' : "Failed to add user!"
 # if successful we will redirect, otherwise return a fail message
 ```
 
-[This](https://guides.rubyonrails.org/active_record_basics.html) is really helpful and clear and goes over all the basics which we might need.
+[This](https://guides.rubyonrails.org/active_record_basics.html) is really helpful and clear and goes over all the basics methods that we might need.
