@@ -9,4 +9,8 @@ class Application < Sinatra::Base
   get '/' do
     return erb(:index)
   end
+
+  get '/login' do
+    return erb(:login)
+  end
 end

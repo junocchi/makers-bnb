@@ -23,6 +23,17 @@ describe Application do
       response = get('/')
 
       expect(response.status).to eq(200)
+      expect(response.body).to include('<h1>Welcome to CloudBnB</h1>')
+      expect(response.body).to include('<label for="exampleInputName1">Name</label>')
+      expect(response.body).to include('<button type="submit" class="btn btn-primary">Submit</button>')
+    end
+  end
+  
+  context 'GET /login' do
+    it 'should get the login page' do
+      response = get('/login')
+
+      expect(response.status).to eq(200)
     end
   end
 end
