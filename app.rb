@@ -16,4 +16,9 @@ class Application < Sinatra::Base
   get '/' do
     return erb(:index)
   end
+
+  get '/spaces' do
+    return erb(:spaces)
+  end
+
 end
