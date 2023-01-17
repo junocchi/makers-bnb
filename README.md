@@ -32,11 +32,60 @@ rake db:create
 
 # create the tables from our migrations
 rake db:migrate
+rake db:migrate RACK_ENV="test"
 
 # populate the tables with test data
 rake db:seed
+rake db:seed RACK_ENV="test"
 ```
 
 Now if you check the tables in TablePlus you should see that the databases have been added (for both development and for test) and that the tables are now populated with dummy data.
 
 ## How to use
+
+To access the data in the controller (app.rb) we can access any table as we would any object in ruby.
+
+For example to retrieve all users as an array of objects:
+
+```ruby
+# we use the single form of the table name, which is plural (users)
+users = User.all
+
+puts users[0].id # => 1
+puts users[0].username # =>'alex95'
+puts users[0].firstname # => 'alex'
+```
+
+Or to return a single entry by its id:
+
+```ruby
+user = User.find(1) # will return the user with id 1
+puts user.id # => 1
+```
+
+And to add to a table:
+
+```ruby
+User.create(
+  username: 'alex95',
+  firstname: 'Alex',
+  lastname: 'Shabib',
+  password: 'password',
+  email: 'alex@gmail.com'
+) # will just add the entry to the database
+
+# ALTERNATIVELY
+
+user = User.new(
+  username: 'alex95',
+  firstname: 'Alex',
+  lastname: 'Shabib',
+  password: 'password',
+  email: 'alex@gmail.com'
+)
+# we create a new user and then save it to the database
+user.save ? '/' : "Failed to add user!"
+# if successful we will redirect, otherwise return a fail message
+```
+
+[This](https://guides.rubyonrails.org/active_record_basics.html) is really helpful and clear and goes over all the basics which we might need.
