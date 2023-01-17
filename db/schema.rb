@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_17_142147) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_17_162747) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "availabilities", force: :cascade do |t|
+    t.bigint "space_id"
+    t.date "book_in"
+    t.date "book_out"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.bigint "space_id"
+    t.bigint "user_id"
+    t.date "book_in"
+    t.date "book_out"
+  end
 
   create_table "spaces", force: :cascade do |t|
     t.text "description"
@@ -30,4 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_142147) do
     t.string "username"
   end
 
+  add_foreign_key "availabilities", "spaces"
+  add_foreign_key "spaces", "users"
+  add_foreign_key "requests", "users" 
+  add_foreign_key "requests", "spaces"
 end

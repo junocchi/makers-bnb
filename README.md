@@ -6,6 +6,8 @@ Someone in your team should fork this seed repo to their Github account. Everyon
 
 ## Setup
 
+### Basic
+
 ```bash
 # Install gems
 bundle install
@@ -15,4 +17,18 @@ rspec
 
 # Run the server (better to do this in a separate terminal).
 rackup
+```
+
+### Database
+
+To set up the database on your local machine:
+
+```bash
+# make sure all dependencies are downloaded
+bundle install
+
+# create the databases on your machine
+rake db:create
+
+#
 ```

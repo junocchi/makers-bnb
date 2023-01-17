@@ -15,14 +15,14 @@ Dir.glob(File.join(APP_ROOT, "lib", "*.rb")).each { |file| require file }
 # the database setup files that were just made in config/
 require File.join(APP_ROOT, "config", "database")
 
-# configure Chitter settings
+# configure settings
 # This bit of config could also be done in the main app class definition
 # This is monkey-patching onto the main class definition
 # I suppose it's neater to move it here
 # The public/ folder is where images and stylesheets should be, the last line confirms that location
-class Application < Sinatra::Base
- set :method_override, true
- set :root, APP_ROOT
- set :views, File.join(APP_ROOT, "views")
- set :public_folder, File.join(APP_ROOT, "public")
-end
+# class Application < Sinatra::Base
+#  set :method_override, true
+#  set :root, APP_ROOT
+#  set :views, File.join(APP_ROOT, "views")
+#  set :public_folder, File.join(APP_ROOT, "public")
+# end

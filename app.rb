@@ -2,6 +2,10 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require 'sinatra/activerecord'
 require 'bcrypt'
+require_relative 'lib/space'
+require_relative 'lib/user'
+require_relative 'lib/availability'
+require_relative 'lib/request'
 
 class Application < Sinatra::Base
   register Sinatra::ActiveRecordExtension
@@ -12,16 +16,3 @@ class Application < Sinatra::Base
   get '/' do
     return erb(:index)
   end
-
-  post '/add_user' do
-    user = User.new(
-      "username": params[:username],
-      "firstname": params[:firstname],
-      "lastname": params[:lastname],
-      "email": params[:email],
-      "password": params[:password]
-    )
-    # add user to db
-    user.save ? (redirect "/") : "Failed to add user!"
-  end
-end

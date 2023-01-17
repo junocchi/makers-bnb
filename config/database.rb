@@ -1,6 +1,6 @@
 # in config/database.rb
  # set the database based on the current environment
- # The name cloudbnb in the below line is because my main app controller class in app.rb is called cloudbnb
+ # The name Application in the below line is because my main app controller class in app.rb is called cloudbnb
  database_name = "cloudbnb-#{Application.environment}"
  db = URI.parse( ENV['DATABASE_URL'] || "postgres://localhost/#{database_name}")
  
