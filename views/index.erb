@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>MakersBnB</title>
+  <head>
+    <title>MakersBnB</title>
 
         <!--
             Head to https://github.com/makersacademy/web-applications/blob/main/pills/loading_css_or_static_files.md
             If you're wondering how the CSS file below is being loaded.
         -->
-        <link rel="stylesheet" href="/style.css" >
-    </head>
-    <body>
-        <p>This is the homepage.</h1>
-    </body>
+    <link rel="stylesheet" href="/style.css" >
+  </head>
+  <body>
+  <p>This is the homepage.</h1>
+
+  <div class="header">
+
+    <div class="nav"> login<a href="/signin"></a></div>
+    <div class="logo"> <img src="images/logo_cloudbnb.jpeg" /> </div>
+  
+  </div>
+  
+  <div class="content">
+
+  <h1>Feel at home, anywhere </h1>
+  <p>description of the page</p>
+  <p>Sign up to MakersBnB </p> 
+
+    <form method="POST" action="login"> 
+      <label for="email"></label>
+      <input type="text" placeholder="email address">
+      <label for="password"></label>
+      <input type="text" placeholder="password">
+      <label for="password"></label>
+      <input type="text" placeholder="password">
+      <input type="submit" name="Sign up!" />
+    </form>
+  </div>
+  
+  </body>
 </html>
