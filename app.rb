@@ -10,7 +10,12 @@ class Application < Sinatra::Base
     return erb(:index)
   end
 
+
   get '/login' do
     return erb(:login)
+  end
+
+  get '/createspace' do
+    return erb(:createspace)
   end
 end

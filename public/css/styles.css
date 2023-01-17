@@ -1,0 +1,19 @@
+
+.container{
+    margin: 0 auto;
+    width: 800px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    
+}
+
+form input {
+    width:50%
+}
+.signup-form {
+    margin: auto;
+}
