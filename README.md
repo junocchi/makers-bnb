@@ -43,7 +43,7 @@ Now if you check the tables in TablePlus you should see that the databases have 
 
 ## How to use
 
-To access the data in the controller (app.rb) we can access any table as we would any object in ruby.
+To access the database from the controller (app.rb) we can access any table as we would any object in ruby.
 
 For example to retrieve all users as an array of objects:
 
