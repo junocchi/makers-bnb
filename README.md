@@ -30,5 +30,13 @@ bundle install
 # create the databases on your machine
 rake db:create
 
-#
+# create the tables from our migrations
+rake db:migrate
+
+# populate the tables with test data
+rake db:seed
 ```
+
+Now if you check the tables in TablePlus you should see that the databases have been added (for both development and for test) and that the tables are now populated with dummy data.
+
+## How to use
