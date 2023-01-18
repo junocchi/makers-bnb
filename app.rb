@@ -35,8 +35,7 @@ class Application < Sinatra::Base
   end
 
   get '/spaces' do
-    redirect_if_not_logged_in
-    @spaces = [{ 'name' => 'California' }, { 'name' => 'Texas' }]
+    @spaces = Space.all
     return erb(:spaces)
   end
 
