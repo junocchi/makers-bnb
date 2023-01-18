@@ -1,42 +1,14 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>MakersBnB</title>
-
-        <!--
-            Head to https://github.com/makersacademy/web-applications/blob/main/pills/loading_css_or_static_files.md
-            If you're wondering how the CSS file below is being loaded.
-        -->
-
-        <link rel="stylesheet" href="/css/styles.css" >
-    </head>
-
-  <body>
-<div class="container">
-  <div class="header">
-    <a class="btn btn-primary" href="http://localhost:9292/login" role="button">Login</a>
-    <div class="logo"> <img src="images/logo_cloudbnb.jpeg" /> </div>
-  
-  </div>
-  
-  <div class="content">
-
-  <h1>Feel at home, anywhere </h1>
-  <p>description of the page</p>
-  <p>Sign up to MakersBnB </p> 
-    <div class="signup-form">
-        <form method="POST" action="signup"> 
-            <label for="email">Email</label>
-            <input type="text" placeholder="email address">
-            <label for="password">Password</label>
-            <input type="text" placeholder="password">
-            <label for="password">Password</label>
-            <input type="text" placeholder="password">
-            <input type="submit" name="Sign up!" />
-        </form>
-    </div>
-  </div>
-  </div>
-  </body>
-
-</html>
+<h1 class="mast">Feel at home, anywhere</h1>
+<p>description of the page</p>
+<p>Sign up to MakersBnB</p>
+<div class="signup-form">
+  <form method="POST" action="signup">
+    <label for="email">Email</label>
+    <input type="text" placeholder="email address" name="email" />
+    <label for="password">Password</label>
+    <input type="text" placeholder="password" name="password" />
+    <label for="password">Password</label>
+    <input type="text" placeholder="password" name="password" />
+    <input type="submit" value="Sign up!" name="Sign up!" />
+  </form>
+</div>

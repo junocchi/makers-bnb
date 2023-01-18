@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MakersBnB</title>
 
-        <!--
+<head>
+  <title>CloudBnB</title>
+
+  <!--
             Head to https://github.com/makersacademy/web-applications/blob/main/pills/loading_css_or_static_files.md
             If you're wondering how the CSS file below is being loaded.
         -->
 
-        <link rel="stylesheet" href="/css/styles.css" >
-    </head>
+  <link href="css/styles.css" rel="stylesheet" type="text/css" />
+</head>
 
-  <body>
-<div class="container">
-  <div class="header">
-    <a class="btn btn-primary" href="http://localhost:9292/login" role="button">Login</a>
-    <div class="logo"> <img src="images/logo_cloudbnb.jpeg" /> </div>
-  
-  </div>
-  
-  <div class="content">
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="nav">
+        <ul>
+          <li><a href="spaces">Spaces</a>
+          </li>
+          <li><a href="requests">Requests</a>
+          </li>
+          <li><a href="login">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-<%= yield %> 
-    
+    <div class="content">
+
+      <%= yield %>
+
+    </div>
   </div>
-  </div>
-  </body>
+</body>
 
 </html>
