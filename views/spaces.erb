@@ -1,8 +1,33 @@
-<h1 class="mast">Feel at home, anywhere</h1>
-<p>description of the page</p>
-<div class="space-container">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CloudBnB</title>
+    <link rel="stylesheet" href="/style.css" >
+  </head>
+  <body>
+  
+  <div class="header">
 
-<% @spaces.each do |space| %>
- <div class="space-card"> <%= space["name"] %></div>
-<% end %>
-</div>
+    <div class="nav"> sign_out<a href="/"></a></div>
+    <div class="nav"> requests<a href="/requests"></a></div>
+      
+  </div>
+  
+  <div class="content">
+
+  <h1>Book a Space </h1>
+  <p>description of the page</p>
+  <div class="nav"> list a space<a href="/spaces/new"></a></div>
+
+    <form method="GET/" action="spaces">  <!--missing params -->
+      <label for="Available from DD/MM/YY"></label>
+      <input type="text" placeholder="DD/MM/YY">
+      <label for="Available to DD/MM/YY"></label>
+      <input type="text" placeholder="DD/MM/YY">
+      
+      <input type="list spaces" name="List Spaces" />
+    </form>
+  </div>
+  
+  </body>
+</html>
