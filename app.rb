@@ -25,7 +25,7 @@ class Application < Sinatra::Base
   end
 
   get '/spaces' do
-    @spaces = [{ 'name' => 'California' }, { 'name' => 'Texas' }]
+    @spaces = Space.all
     return erb(:spaces)
   end
 
