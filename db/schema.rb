@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_17_162747) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_18_162823) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_162747) do
     t.bigint "user_id"
     t.date "book_in"
     t.date "book_out"
+    t.boolean "approved"
   end
 
   create_table "spaces", force: :cascade do |t|
@@ -44,7 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_17_162747) do
   end
 
   add_foreign_key "availabilities", "spaces"
-  add_foreign_key "spaces", "users"
   add_foreign_key "requests", "spaces"
   add_foreign_key "requests", "users"
+  add_foreign_key "spaces", "users"
 end
