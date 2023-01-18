@@ -24,19 +24,40 @@ class Application < Sinatra::Base
   end
 
   post '/login' do
-    redirect '/spaces'
+    user = User.find_by(username: params[:username])
+
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect '/spaces'
+    else
+      erb(:login)
+    end    
   end
 
   get '/spaces' do
+    redirect_if_not_logged_in
     @spaces = [{ 'name' => 'California' }, { 'name' => 'Texas' }]
     return erb(:spaces)
   end
 
   get '/create-space' do
+    redirect_if_not_logged_in
     return erb(:create_space)
   end
 
   get '/requests' do
+    redirect_if_not_logged_in
     return erb(:requests)
+  end
+
+  helpers do
+
+    def logged_in?
+      !!session[:id]
+    end
+
+    def redirect_if_not_logged_in
+      redirect '/login' if !logged_in?
+    end
   end
 end
