@@ -9,6 +9,8 @@ require_relative 'lib/request'
 
 class Application < Sinatra::Base
   register Sinatra::ActiveRecordExtension
+  enable :session
+  
   configure :development do
     register Sinatra::Reloader
   end
@@ -18,8 +20,9 @@ class Application < Sinatra::Base
   end
 
   get '/login' do
-    erb :login
+    erb(:login)
   end
+
   post '/login' do
     redirect '/spaces'
   end
@@ -32,6 +35,7 @@ class Application < Sinatra::Base
   get '/create-space' do
     return erb(:create_space)
   end
+
   get '/requests' do
     return erb(:requests)
   end
