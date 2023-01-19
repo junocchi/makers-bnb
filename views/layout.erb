@@ -21,8 +21,14 @@
           </li>
           <li><a href="requests">Requests</a>
           </li>
-          <li><a href="login">Login</a>
-          </li>
+          <% if !logged_in? %>
+            <li><a href="login">Login</a>
+            </li>
+          <% end %>
+          <% if logged_in? %>
+            <li><a href="/logout">Logout</a>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>
