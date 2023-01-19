@@ -16,7 +16,7 @@ class Application < Sinatra::Base
   end
 
   get '/' do
-    return erb(:index)
+    render_erb(:index)
   end
 
   post '/register' do
@@ -33,38 +33,38 @@ class Application < Sinatra::Base
   end
 
   get '/login' do
-    erb(:login)
+    render_erb(:login)
   end
 
   post '/login' do
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
-      session[:session_id] = user.id
+      session[:user_id] = user.id
       redirect '/spaces'
     else
-      erb(:login)
+      render_erb(:login)
     end
   end
 
   get '/spaces' do
     redirect_if_not_logged_in
     @spaces = Space.all
-    return erb(:spaces)
+    render_erb(:spaces)
   end
 
   get '/create-space' do
     redirect_if_not_logged_in
-    return erb(:create_space)
+    render_erb(:create_space)
   end
 
   get '/requests' do
     redirect_if_not_logged_in
     @requests = [{ 'description' => 'Nice place' }, { 'description' => 'Nice place2' }]
-    return erb(:requests)
+    render_erb(:requests)
   end
 
   post '/request' do
-    user_id = session[:session_id]
+    user_id = session[:user_id]
     space_id = session[:space_id]
     request = Request.create(
       space_id: space_id,
@@ -81,16 +81,21 @@ class Application < Sinatra::Base
     session[:space_id] = space_id # a bit of a hack
     @space = Space.find(space_id)
     @availabilities = Availability.where("space_id = #{space_id}")
-    erb(:book)
+    render_erb(:book)
   end
 
   helpers do
     def logged_in?
-      !!session[:session_id]
+      !!session[:user_id]
     end
 
     def redirect_if_not_logged_in
       redirect '/login' unless logged_in?
+    end
+
+    def render_erb(template)
+      @username = User.find(session[:user_id]).username unless !logged_in?
+      erb template, :layout => !request.xhr?
     end
   end
 end
