@@ -89,4 +89,32 @@ describe Application do
       expect(response.status).to eq 302
     end
   end
+
+  context 'GET to /book' do
+    it 'renders the book page' do
+      # post(
+      #   '/register',
+      #   username: 'tester',
+      #   firstname: 'Testy',
+      #   lastname: 'McTest',
+      #   email: 'tester@test.com',
+      #   password: 'password'
+      # )
+
+      
+      response = post(
+        '/login',
+        username: 'tester',
+        password: 'password'
+      )
+
+      response = get('/spaces')
+      expect(response.body).to include('<h1>Book a Space </h1>')
+
+      # response = get('/book/1')
+      # expect(response.status).to eq 200
+      # space = Space.find(1)
+      # expect(response.body).to include(space.description)
+    end
+  end
 end

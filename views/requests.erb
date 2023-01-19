@@ -1,2 +1,23 @@
-<h1 class="mast">Feel at home, anywhere</h1>
+<h1 class="mast">Requests</h1>
 <p>Here are your requests to view and approve.</p>
+
+<div class="request-list-container">
+<div class="req-col">
+<h2>Booking requests</h2>
+<% @requests.each do |request|%>
+<div class="request">
+<%= request["description"]%>
+</div>
+<% end%>
+</div>
+<div class="req-col">
+<h2>Booking requests for my spaces</h2>
+<% @requests.each do |request|%>
+<div class="request">
+<%= request["description"]%>
+</div>
+<% end%>
+</div>
+
+</div>
+
