@@ -32,7 +32,11 @@ describe Application do
 
   context 'POST /login' do
     it "should log the user in" do
-      response = post('/login', username: 'kasey_christiansen', password_digest: '$2a$12$iOiBEcDs1dyW6n82QKHPoeli4QB9teFM9NPX/37Poe/jtpRmta1aW')
+      response = post(
+        '/login',
+        username: 'tester',
+        password: 'password'
+      )
 
       expect(response.status).to eq 200
     end
@@ -49,9 +53,9 @@ describe Application do
       response = get('/spaces')
 
       expect(response.status).to eq 200
-      expect(response.body).to include('<label for="Available from DD/MM/YYYY"></label>')
-      expect(response.body).to include('<label for="Available to DD/MM/YYYY"></label>')
-      expect(response.body).to include('<link rel="stylesheet" href="/style.css" >')
+      expect(response.body).to include('<label for="date-from">Date from</label>')
+      expect(response.body).to include('<label for="date-to">Date to</label>')
+      expect(response.body).to include('<input type="submit" value="submit" />')
     end
 
     it 'should redirect the user to /login page if not logged in' do
