@@ -58,15 +58,29 @@ class Application < Sinatra::Base
   end
 
   get '/requests' do
-    # redirect_if_not_logged_in
+    redirect_if_not_logged_in
     @requests = [{ 'description' => 'Nice place' }, { 'description' => 'Nice place2' }]
     return erb(:requests)
+  end
+
+  post '/request' do
+    user_id = session[:session_id]
+    space_id = session[:space_id]
+    request = Request.create(
+      space_id: space_id,
+      user_id: user_id,
+      book_in: params[:book_in],
+      book_out: params[:book_out]
+    )
+    redirect '/spaces'
   end
 
   get '/book/:id' do
     redirect_if_not_logged_in
     space_id = params[:id]
+    session[:space_id] = space_id # a bit of a hack
     @space = Space.find(space_id)
+    @availabilities = Availability.where("space_id = #{space_id}")
     erb(:book)
   end
 

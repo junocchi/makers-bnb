@@ -120,8 +120,10 @@ describe Application do
         password: 'password'
       )
 
-      response = get('/spaces')
-      expect(response.body).to include('<h1>Book a Space </h1>')
+      response = get('/book/1')
+      expect(response.status).to eq 200
+      space = Space.find(1)
+      expect(response.body).to include(space.description)
     end
   end
 end
