@@ -14,8 +14,8 @@ describe Application do
 
       expect(response.status).to eq(200)
       expect(response.body).to include('<title>CloudBnB</title>')
-      expect(response.body).to include('<div class="logo"> <img src="images/logo_cloudbnb.jpeg" alt="Cloudbnb logo" /> </div>')
-      expect(response.body).to include('<input type="text" placeholder="email address">')
+      expect(response.body).to include('<link rel="stylesheet" href="/style.css" >')
+      expect(response.body).to include('<input type="submit" name="Sign up!" />')
     end
   end
   
@@ -24,8 +24,8 @@ describe Application do
       response = get('/login')
 
       expect(response.status).to eq(200)
+      expect(response.body).to include('<title>CloudBnB</title>')
       expect(response.body).to include('<h1 class="mast">Feel at home, anywhere</h1>')
-      expect(response.body).to include('<form method="POST" action="login">')
       expect(response.body).to include('<input type="submit" value="Log in"  />')
     end
   end
@@ -33,7 +33,8 @@ describe Application do
   context 'POST /login' do
     it "should log the user in" do
       response = post('/login', username: 'kasey_christiansen', password_digest: '$2a$12$iOiBEcDs1dyW6n82QKHPoeli4QB9teFM9NPX/37Poe/jtpRmta1aW')
-
+      
+      expect(response.body).to eq 200
     end
   end
 
