@@ -43,7 +43,7 @@ class Application < Sinatra::Base
       redirect '/spaces'
     else
       erb(:login)
-    end    
+    end
   end
 
   get '/spaces' do
@@ -58,7 +58,8 @@ class Application < Sinatra::Base
   end
 
   get '/requests' do
-    redirect_if_not_logged_in
+    # redirect_if_not_logged_in
+    @requests = [{ 'description' => 'Nice place' }, { 'description' => 'Nice place2' }]
     return erb(:requests)
   end
 
@@ -70,13 +71,12 @@ class Application < Sinatra::Base
   end
 
   helpers do
-
     def logged_in?
       !!session[:session_id]
     end
 
     def redirect_if_not_logged_in
-      redirect '/login' if !logged_in?
+      redirect '/login' unless logged_in?
     end
   end
 end
