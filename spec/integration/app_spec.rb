@@ -36,4 +36,12 @@ describe Application do
       expect(response.status).to eq(200)
     end
   end
+
+  context 'GET to /book' do
+    it 'renders the book page' do
+      response = get('/book/1')
+      expect(response.status).to eq 200
+      expect(response.body).to include('Book')
+    end
+  end
 end

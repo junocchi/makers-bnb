@@ -49,6 +49,13 @@ class Application < Sinatra::Base
     return erb(:requests)
   end
 
+  get '/book/:id' do
+    redirect_if_not_logged_in
+    space_id = params[:id]
+    @space = Space.find(space_id)
+    erb(:book)
+  end
+
   helpers do
 
     def logged_in?
