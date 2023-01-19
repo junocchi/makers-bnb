@@ -7,7 +7,7 @@ body{
     margin: 0;
 }
 
-.signup-form, .create-space-form, .space-container{
+.signup-form, .create-space-form, .space-container, .space-listing{
     display:flex;
     flex-direction: column;
     margin: 0 auto;
@@ -37,7 +37,7 @@ background-color: #fff;
 color:#000;
 padding: 22px;
 border-radius: 4px;
-margin-bottom: 22px ;
+margin-bottom: 40px ;
 }
 input,textarea {
     overflow: visible;
@@ -118,4 +118,8 @@ display: inline;
     padding: 8px;
     border-radius: 4px;
     margin-bottom: 12px;
+}
+
+.space-listing{
+    max-width:100%;
 }
