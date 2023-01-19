@@ -29,7 +29,7 @@ class Application < Sinatra::Base
       password: params[:password]
     )
     # add user to db
-    user.save ? (redirect "/") : "Failed to add user!"
+    user.save ? (redirect "/login") : "Failed to add user!"
   end
 
   get '/login' do
