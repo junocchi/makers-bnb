@@ -30,6 +30,13 @@ describe Application do
     end
   end
 
+  context 'POST /login' do
+    it "should log the user in" do
+      response = post('/login', username: 'kasey_christiansen', password_digest: '$2a$12$iOiBEcDs1dyW6n82QKHPoeli4QB9teFM9NPX/37Poe/jtpRmta1aW')
+
+    end
+  end
+
   context 'GET /spaces' do
     xit 'should return the spaces page after logging in' do
       response = get('/spaces')
