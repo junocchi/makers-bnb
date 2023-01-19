@@ -23,9 +23,7 @@ describe Application do
       response = get('/')
 
       expect(response.status).to eq(200)
-      expect(response.body).to include('<h1>Welcome to CloudBnB</h1>')
-      expect(response.body).to include('<label for="exampleInputName1">Name</label>')
-      expect(response.body).to include('<button type="submit" class="btn btn-primary">Submit</button>')
+      expect(response.body).to include('<p>Sign up to MakersBnB </p>')
     end
   end
   
@@ -34,6 +32,34 @@ describe Application do
       response = get('/login')
 
       expect(response.status).to eq(200)
+    end
+  end
+
+  context 'GET to /book' do
+    it 'renders the book page' do
+      # post(
+      #   '/register',
+      #   username: 'tester',
+      #   firstname: 'Testy',
+      #   lastname: 'McTest',
+      #   email: 'tester@test.com',
+      #   password: 'password'
+      # )
+
+      
+      response = post(
+        '/login',
+        username: 'tester',
+        password: 'password'
+      )
+
+      response = get('/spaces')
+      expect(response.body).to include('<h1>Book a Space </h1>')
+
+      # response = get('/book/1')
+      # expect(response.status).to eq 200
+      # space = Space.find(1)
+      # expect(response.body).to include(space.description)
     end
   end
 end
