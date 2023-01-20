@@ -59,6 +59,12 @@ input,textarea {
     background-size: contain;
     background-repeat: no-repeat;
 }
+.content p:first-of-type{
+font-size: 1.2rem;
+font-weight: bold;
+padding: 22px 82px;
+line-height: 2.2rem;
+}
 
 .header{
     display: flex;
@@ -73,12 +79,13 @@ width: 200px;
 
 }
 .mast{
-    margin-bottom: 88px;
+    margin-bottom: 48px;
 }
 
 h1 {
-    font-size: 3.2rem;
+    font-size: 3rem;
     color: #fff;
+    margin-top: 12px;
 }
 .home p, h1{
     text-align: center;
@@ -92,10 +99,11 @@ form{
 }
 .nav a{
     border:solid 3px #fff;
-    padding:8px 34px;
+    padding:8px 32px;
+    margin-left: 6px;
     text-decoration: none;
     color: #fff;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 .nav a:hover{
 color: #000;
@@ -123,3 +131,5 @@ display: inline;
 .space-listing{
     max-width:100%;
 }
+.logo{
+padding: 14px;}

@@ -16,6 +16,7 @@ class Application < Sinatra::Base
   end
 
   get '/' do
+    @loggedin = false
     return erb(:index)
   end
 
