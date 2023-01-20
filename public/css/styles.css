@@ -123,3 +123,13 @@ display: inline;
 .space-listing{
     max-width:100%;
 }
+
+.username{
+    color: white !important;
+    padding: 5px;
+    border: 1px solid white;
+    background: black;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
