@@ -63,6 +63,17 @@ class Application < Sinatra::Base
     render_erb(:create_space)
   end
 
+  post '/createspace' do
+    user_id = session[:user_id]
+    space = Space.create(
+      name: params[:name], 
+      description: params[:description], 
+      price: params[:price], 
+      address: params[:address]
+    )
+    redirect '/spaces'
+  end
+
   get '/requests' do
     redirect_if_not_logged_in
     @requests = [{ 'description' => 'Nice place' }, { 'description' => 'Nice place2' }]

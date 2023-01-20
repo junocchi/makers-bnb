@@ -126,4 +126,26 @@ describe Application do
       expect(response.body).to include(space.description)
     end
   end
+
+  context 'POST /createspace' do
+    it "adds a space to the database" do 
+      response = post(
+        '/login',
+        username: 'simnew',
+        password: 'password'
+      )
+
+      response = post('/createspace', 
+        name: 'Clifton House', 
+        description: 'A lovely manor house with gardens', 
+        price: 54.00,
+        address: '1 Manor Road, High Wycombe, Bucks, HP11 6GP'
+        )
+
+      response = get('/spaces')
+      expect(response.body).to include
+        (have_attributes(:name => "Clifton House")
+        )
+    end
+  end
 end
