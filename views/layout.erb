@@ -26,11 +26,12 @@
 
       <div class="nav">
         <ul>
-          
-          <li><a href="spaces">Spaces</a>
-          </li>
-          <li><a href="requests">Requests</a>
-          </li>
+          <% if logged_in? %>
+            <li><a href="spaces">Spaces</a>
+            </li>
+            <li><a href="requests">Requests</a>
+            </li>
+          <% end %>
           <% if !logged_in? %>
             <li><a href="login">Login</a>
             </li>
