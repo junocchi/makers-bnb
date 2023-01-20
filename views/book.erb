@@ -1,12 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CloudBnB</title>
-</head>
-<body>
-  
-</body>
-</html>
+<h2>Book In Date</h2>
+
+<div class="container">
+<h3><%= @space.name %></h3>
+  <p>
+    Description: <%= @space.description %>
+  </p>
+  <p>
+    Address: <%= @space.address%>
+  </p>
+  <p>
+    Price: £<%= @space.price%>
+  </p>
+  This space is available:<br>
+  <%  @availabilities.each do |date| %>
+    From: <%= date.book_in %> To: <%= date.book_out %><br>
+  <% end %>
+
+  <form method="POST" action="/request">
+    <label for="book_in">Book in date:</label>
+    <input type="text" class="" placeholder="YYYY-MM-DD" name="book_in">
+    <label for="book_out">Book out date:</label>
+    <input type="text" class="" placeholder="YYYY-MM-DD" name="book_out">
+    <input type="submit" value="Request">
+  </form>
+
+</div>

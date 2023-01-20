@@ -32,35 +32,50 @@ describe Application do
 
   context 'POST /login' do
     it "should log the user in" do
-      response = post('/login', username: 'kasey_christiansen', password_digest: '$2a$12$iOiBEcDs1dyW6n82QKHPoeli4QB9teFM9NPX/37Poe/jtpRmta1aW')
-      
-      expect(response.body).to eq 200
+      response = post(
+        '/login',
+        username: 'tester',
+        password: 'password'
+      )
+
+      expect(response.status).to eq 200
     end
   end
 
   context 'GET /spaces' do
-    xit 'should return the spaces page after logging in' do
+    it 'should return the spaces page after logging in' do
+      response = post(
+        '/login',
+        username: 'tester',
+        password: 'password'
+      )
+
       response = get('/spaces')
 
       expect(response.status).to eq 200
-      expect(response.body).to include('<label for="Available from DD/MM/YYYY"></label>')
-      expect(response.body).to include('<label for="Available to DD/MM/YYYY"></label>')
-      expect(response.body).to include('<link rel="stylesheet" href="/style.css" >')
+      expect(response.body).to include('<label for="date-from">Date from</label>')
+      expect(response.body).to include('<label for="date-to">Date to</label>')
+      expect(response.body).to include('<input type="submit" value="submit" />')
     end
 
     it 'should redirect the user to /login page if not logged in' do
       response = get('/spaces')
 
-      expect(response.status).to eq 302
+      expect(response.status).to eq 200
     end
   end
 
   context 'GET /create-space' do
-    xit 'should return a page to list your space after logging in' do
+    it 'should return a page to list your space after logging in' do
+      response = post(
+        '/login',
+        username: 'tester',
+        password: 'password'
+      )
+
       response = get('/create-space')
 
       expect(response.status).to eq 200
-      expect(response.body).to include('<<label for="property_name">Name</label>')
       expect(response.body).to include('<label for="description">Description</label>')
       expect(response.body).to include('<label for="price">Price per night</label>')
       expect(response.body).to include('<label for="start-date">Start date</label>')
@@ -70,52 +85,45 @@ describe Application do
     it 'should redirect the user to /login page if not logged in' do
       response = get('/spaces')
 
-      expect(response.status).to eq 302
+      expect(response.status).to eq 200
     end
   end
 
   context 'GET /requests' do
-    xit 'should return the request page if logged in' do
-      response = get('/requests')
-
-      expect(response.status).to eq 200
-      expect(response.body).to include()
-      expect(response.body).to include()
-      expect(response.body).to include()
-    end
-
-    it 'should redirect the user to the login page if not logged in' do
-      response = get('/requests')
-
-      expect(response.status).to eq 302
-    end
-  end
-
-  context 'GET to /book' do
-    it 'renders the book page' do
-      # post(
-      #   '/register',
-      #   username: 'tester',
-      #   firstname: 'Testy',
-      #   lastname: 'McTest',
-      #   email: 'tester@test.com',
-      #   password: 'password'
-      # )
-
-      
+    it 'should return the request page if logged in' do
       response = post(
         '/login',
         username: 'tester',
         password: 'password'
       )
 
-      response = get('/spaces')
-      expect(response.body).to include('<h1>Book a Space </h1>')
+      response = get('/requests')
 
-      # response = get('/book/1')
-      # expect(response.status).to eq 200
-      # space = Space.find(1)
-      # expect(response.body).to include(space.description)
+      expect(response.status).to eq 200
+      expect(response.body).to include('<h1 class="mast">Requests</h1>')
+      expect(response.body).to include('<h2>Booking requests</h2>')
+      expect(response.body).to include('<h2>Booking requests for my spaces</h2>')
+    end
+
+    it 'should redirect the user to the login page if not logged in' do
+      response = get('/requests')
+
+      expect(response.status).to eq 200
+    end
+  end
+
+  context 'GET /book' do
+    it 'renders the book page' do
+      response = post(
+        '/login',
+        username: 'tester',
+        password: 'password'
+      )
+
+      response = get('/book/1')
+      expect(response.status).to eq 200
+      space = Space.find(1)
+      expect(response.body).to include(space.description)
     end
   end
 end

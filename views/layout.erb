@@ -15,26 +15,24 @@
 <body>
   <div class="container">
     <div class="header">
-      <div class="logo"><a href="/spaces"><img src="images/logo_bnb.png"></a></div>
+
+<div class="logo"><a href="/spaces"><img src="images/logo_bnb.png"></a></div>
+    <%= @username %>
       <div class="nav">
-
-        <% if @loggedin.nil? %>
-          <ul>
-            <li><a href="spaces">Spaces</a>
+        <ul>
+          <li><a href="spaces">Spaces</a>
+          </li>
+          <li><a href="requests">Requests</a>
+          </li>
+          <% if !logged_in? %>
+            <li><a href="login">Login</a>
             </li>
-            <li><a href="requests">Requests</a>
+          <% end %>
+          <% if logged_in? %>
+            <li><a href="/logout">Logout</a>
             </li>
-            <li><a href="logout">Logout</a>
-            </li>
-          </ul>
-          <% else %>
-            <ul>
-
-              <li><a href="login">Login</a>
-              </li>
-            </ul>
-            <% end %>
-
+          <% end %>
+        </ul>
       </div>
     </div>
 
