@@ -76,7 +76,13 @@ class Application < Sinatra::Base
 
   get '/requests' do
     redirect_if_not_logged_in
-    @requests = [{ 'description' => 'Nice place' }, { 'description' => 'Nice place2' }]
+    # find spaces owned by user logged in
+    spaces = Space.where("user_id = #{session[:user_id]}").ids
+    # find the requests on those spaces:
+    @requests_on_my_spaces = Request.where('space_id IN (?)', spaces)
+    
+    # users requests
+    @users_requests = Request.where("user_id = #{session[:user_id]}")
     render_erb(:requests)
   end
 

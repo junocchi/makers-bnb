@@ -14,12 +14,19 @@
 
 <body>
   <div class="container">
+
     <div class="header">
 
+      <% if logged_in? %>
+          <div class='username'><%= @username %>
+          </div>
+      <% end %>
+
 <div class="logo"><a href="/spaces"><img src="images/logo_bnb.png"></a></div>
-    <%= @username %>
+
       <div class="nav">
         <ul>
+          
           <li><a href="spaces">Spaces</a>
           </li>
           <li><a href="requests">Requests</a>
