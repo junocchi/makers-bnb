@@ -65,12 +65,23 @@ class Application < Sinatra::Base
 
   post '/createspace' do
     user_id = session[:user_id]
-    space = Space.create(
+    space = Space.new(
       name: params[:name], 
       description: params[:description], 
       price: params[:price], 
       address: params[:address]
     )
+    space.save!
+    book_in = params[:date_from]
+    book_out = params[:date_to]
+    
+    availability = Availability.create(
+      space_id: space.id,
+      book_in: book_in,
+      book_out: book_out
+    )
+    
+    
     redirect '/spaces'
   end
 
