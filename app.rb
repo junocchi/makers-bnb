@@ -39,11 +39,17 @@ class Application < Sinatra::Base
   post '/login' do
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
-      session[:session_id] = user.id
+      session[:user_id] = user.id
       redirect '/spaces'
     else
       erb(:login)
     end
+  end
+
+  get '/logout' do
+    # kill the session and redirect to the homepage
+    session.clear
+    redirect '/'
   end
 
   get '/spaces' do
@@ -64,7 +70,7 @@ class Application < Sinatra::Base
   end
 
   post '/request' do
-    user_id = session[:session_id]
+    user_id = session[:user_id]
     space_id = session[:space_id]
     request = Request.create(
       space_id: space_id,
@@ -86,7 +92,7 @@ class Application < Sinatra::Base
 
   helpers do
     def logged_in?
-      !!session[:session_id]
+      !!session[:user_id]
     end
 
     def redirect_if_not_logged_in
