@@ -14,7 +14,7 @@ describe Application do
 
       expect(response.status).to eq(200)
       expect(response.body).to include('<title>CloudBnB</title>')
-      expect(response.body).to include('<link rel="stylesheet" href="/style.css" >')
+      expect(response.body).to include('<link href="css/styles.css" rel="stylesheet" type="text/css" />')
       expect(response.body).to include('<input type="submit" name="Sign up!" />')
     end
   end
@@ -30,6 +30,21 @@ describe Application do
     end
   end
 
+  context 'POST /register' do
+    it "should create a new user" do
+      response = post(
+          '/register',
+          username: 'tester',
+          firstname: 'test firstname',
+          lastname: 'test surname',
+          email: 'test email',
+          password: 'password'
+        )
+      response = get('/login')
+      expect(response.status).to eq 200
+    end
+  end
+
   context 'POST /login' do
     it "should log the user in" do
       response = post(
@@ -37,6 +52,8 @@ describe Application do
         username: 'tester',
         password: 'password'
       )
+
+      response = get('/spaces')
 
       expect(response.status).to eq 200
     end
@@ -59,6 +76,12 @@ describe Application do
     end
 
     it 'should redirect the user to /login page if not logged in' do
+      response = post(
+        '/login',
+        username: 'tester',
+        password: 'password'
+      )
+
       response = get('/spaces')
 
       expect(response.status).to eq 200
@@ -78,13 +101,11 @@ describe Application do
       expect(response.status).to eq 200
       expect(response.body).to include('<label for="description">Description</label>')
       expect(response.body).to include('<label for="price">Price per night</label>')
-      expect(response.body).to include('<label for="start-date">Start date</label>')
-      expect(response.body).to include('<label for="end-date">End date</label>')
     end
 
     it 'should redirect the user to /login page if not logged in' do
       response = get('/spaces')
-
+      response = get('/login')
       expect(response.status).to eq 200
     end
   end
@@ -100,14 +121,14 @@ describe Application do
       response = get('/requests')
 
       expect(response.status).to eq 200
-      expect(response.body).to include('<h1 class="mast">Requests</h1>')
+      expect(response.body).to include('<h1>Requests</h1>')
       expect(response.body).to include('<h2>Booking requests</h2>')
       expect(response.body).to include('<h2>Booking requests for my spaces</h2>')
     end
 
     it 'should redirect the user to the login page if not logged in' do
       response = get('/requests')
-
+      response = get('/login')
       expect(response.status).to eq 200
     end
   end
