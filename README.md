@@ -63,8 +63,6 @@ Once we had our user stories built out, we designed our database system.
 
 # How To Run 
 
-### Set up
-
 ```bash
 # Install gems
 bundle install
