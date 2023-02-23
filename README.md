@@ -1,13 +1,69 @@
-# MakersBnB Project Seed
+# Cloud BNB
 
-This repo contains the seed codebase for the MakersBnB project in Ruby (using Sinatra and RSpec).
+Cloud BNB is an Airbnb clone, built in Ruby (using Active Record, Sinatra and RSpec). <br>
 
-Someone in your team should fork this seed repo to their Github account. Everyone in the team should then clone this fork to their local machine to work on it.
+With Cloud BNB you can register, login, list your properties for rent, browse the listed properties, view the availability of properties, and submit booking requests. 
 
-## Setup
+## The Process
 
-### Basic
+We started by desiging our MVP and user stories:
+```
+As a user 
+So that I can use the platform,
+I want to be able to sign up.
 
+As a user 
+So that I can see all the spaces available to hire, 
+I want to be able to login and logout.
+
+As a user , 
+When I am logged in, 
+I want to be able to list one or multiple spaces.
+
+As a user,
+So that my space displays the right information, 
+I want to be able to name my space, provide a description, and price per night.
+
+As a user with a space listed,
+So that my space has availability options, 
+I want to be able to provide dates that it is available to rent.
+
+As a user logged in, 
+So that I can make a booking request, 
+I want to be able to see the dates available for spaces. 
+
+As a user logged in, 
+So that I can make bookings, 
+I want to be able to request to hire a space for a period of time. 
+
+As an owner of a space, 
+So that I can keep track of the booking requests made to my space, 
+I want to be able to see all the booking requests in one place.
+
+As an owner of a space, 
+So that I can confirm a booking request, 
+I want to be able to approve or deny booking requests to my space.
+
+As an owner of a space, 
+So that I can keep track of booking requests made to my space, 
+I want to be notified by email when a space has been booked.
+
+As a user, 
+So that I know if my booking has been approved, 
+I want to recieve an email confirming my booking.
+
+As a user, 
+So that I can keep track of all my bookings, 
+I want to see which spaces I have made booking requests to. 
+
+```
+
+Once we had our user stories built out, we designed our database system.
+![Alt text](./docs/screengrabs/Database%20structure.jpg)
+
+# How To Run 
+
+## Set up
 ```bash
 # Install gems
 bundle install
@@ -41,51 +97,19 @@ rake db:seed RACK_ENV="test"
 
 Now if you check the tables in TablePlus you should see that the databases have been added (for both development and for test) and that the tables are now populated with dummy data.
 
-## How to use
+Once you have installed and run the dependencies, in the directory, run ```rackup``` and navigate in your browser to http://localhost:9292/ where you will be able to see Cloud BNB in action. 
 
-To access the database from the controller (app.rb) we can access any table as we would any object in ruby.
+### Screengrabs of Cloud BNB in Action
+![Alt text](./docs/screengrabs/homepage-register.png)
+![Alt text](./docs/screengrabs/login.png)
+![Alt text](./docs/screengrabs/logged-in-spaces.png)
+![Alt text](./docs/screengrabs/logged-in-requests.png)
 
-For example to retrieve all users as an array of objects:
+## What's Left
+To build out the program further, we would: 
+* Style the bookings page
+* Add approve/deny buttons to booking requests
+* Add images to spaces
+* Add the availability in a calendar format
 
-```ruby
-# we use the single form of the table name, which is plural (users)
-users = User.all
 
-puts users[0].id # => 1
-puts users[0].username # =>'alex95'
-puts users[0].firstname # => 'alex'
-```
-
-Or to return a single entry by its id:
-
-```ruby
-user = User.find(1) # will return the user with id 1
-puts user.id # => 1
-```
-
-And to add to a table:
-
-```ruby
-User.create(
-  username: 'alex95',
-  firstname: 'Alex',
-  lastname: 'Shabib',
-  password: 'password',
-  email: 'alex@gmail.com'
-) # will just add the entry to the database
-
-# ALTERNATIVELY
-
-user = User.new(
-  username: 'alex95',
-  firstname: 'Alex',
-  lastname: 'Shabib',
-  password: 'password',
-  email: 'alex@gmail.com'
-)
-# we create a new user and then save it to the database
-user.save ? '/' : "Failed to add user!"
-# if successful we will redirect, otherwise return a fail message
-```
-
-[This](https://guides.rubyonrails.org/active_record_basics.html) is really helpful and clear and goes over all the basics methods that we might need.
